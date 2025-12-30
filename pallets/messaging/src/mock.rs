@@ -96,6 +96,7 @@ pub fn new_test_ext() -> sp_io::TestExternalities {
 			(3, 1000),
 			(4, 50), // Insufficient balance for bond
 		],
+		dev_accounts: None,
 	}
 	.assimilate_storage(&mut t)
 	.unwrap();
