@@ -403,7 +403,7 @@ Current test suite covers:
 ```bash
 # Generate weights
 cargo build --release --features runtime-benchmarks
-./target/release/solochain-template-node benchmark pallet \
+./target/release/secure-messaging-node benchmark pallet \
     --chain dev \
     --pallet pallet_messaging \
     --extrinsic "*" \
