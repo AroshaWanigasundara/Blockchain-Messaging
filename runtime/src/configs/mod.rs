@@ -139,6 +139,12 @@ impl pallet_balances::Config for Runtime {
 
 parameter_types! {
 	pub FeeMultiplier: Multiplier = Multiplier::one();
+	// 10 UNIT spam bond requirement
+	pub const SpamBond: Balance = 10 * crate::UNIT;
+	// Maximum 1000 contacts per user
+	pub const MaxContactsPerUser: u32 = 1000;
+	// Message hashes expire after 7 days (assuming 6 second blocks)
+	pub const MessageHashExpiry: BlockNumber = 7 * crate::DAYS;
 }
 
 impl pallet_transaction_payment::Config for Runtime {
@@ -165,8 +171,10 @@ impl pallet_template::Config for Runtime {
 
 impl pallet_messaging::Config for Runtime {
 	type RuntimeEvent = RuntimeEvent;
-	type Time = pallet_timestamp::Pallet<Runtime>;
 	type Currency = Balances;
-	type SpamBond = ConstU128<MILLI_UNIT>;
-	type WeightInfo = ();
+	type Time = pallet_timestamp::Pallet<Runtime>;
+	type WeightInfo = pallet_messaging::weights::SubstrateWeight<Runtime>;
+	type SpamBond = SpamBond;
+	type MaxContactsPerUser = MaxContactsPerUser;
+	type MessageHashExpiry = MessageHashExpiry;
 }
