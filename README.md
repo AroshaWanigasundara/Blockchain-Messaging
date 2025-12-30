@@ -448,10 +448,10 @@ Already updated in `runtime/src/benchmarks.rs`.
 cargo build --release
 
 # Run in development mode
-./target/release/solochain-template-node --dev
+./target/release/secure-messaging-node --dev --rpc-external --rpc-port 9946
 
 # Purge old chain data if needed
-./target/release/solochain-template-node purge-chain --dev
+./target/release/secure-messaging-node purge-chain --dev --rpc-external --rpc-port 9946
 ```
 
 ## Frontend Integration
